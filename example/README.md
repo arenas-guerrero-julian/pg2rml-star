@@ -2,7 +2,13 @@
 
 ### Running the example
 
-Run the following Python script to (i) create a [Kùzu](https://github.com/kuzudb/kuzu) database, (ii) load the data from the CSV files in this directory of the repository, and (iii) bootstrap the [RML-star](https://w3id.org/rml/star/spec) mappings.
+First, install `pg2rml-star`:
+
+```bash
+pip install git+https://github.com/arenas-guerrero-julian/pg2rml-star.git
+```
+
+Then, run the following Python script to (i) create a [Kùzu](https://github.com/kuzudb/kuzu) database, (ii) load the data from the CSV files in this directory of the repository, and (iii) bootstrap the [RML-star](https://w3id.org/rml/star/spec) mappings.
 
 ```python
 import kuzu
