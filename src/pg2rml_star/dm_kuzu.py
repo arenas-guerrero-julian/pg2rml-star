@@ -20,7 +20,7 @@ def bootstrap_kuzu(kuzu_object, output_path=None):
         'prefixes': {
             'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
             'xsd': 'http://www.w3.org/2001/XMLSchema#',
-            'ex': 'http://example.com/ns#'
+            'ns': 'http://example.com/ns#'
         },
         'mappings': {}
     }
@@ -51,20 +51,20 @@ def bootstrap_kuzu(kuzu_object, output_path=None):
             'referenceFormulation': 'cypher'
         }
 
-        dm['mappings'][node]['subject'] = f'ex:{quote(node)}/$(x_{node}_id)'
+        dm['mappings'][node]['subject'] = f'ns:{quote(node)}/$(x_{node}_id)'
 
         dm['mappings'][node]['predicateobjects'] = []
         dm['mappings'][node]['predicateobjects'].append({
             'predicates': 'rdf:type',
             'objects': {
-                'value': f'ex:{node}',
+                'value': f'ns:{node}',
                 'type': 'iri'
             }
         })
 
         for property in node_properties:
             pom = {
-                'predicates': f'ex:{quote(property)}',
+                'predicates': f'ns:{quote(property)}',
                 'objects': {
                     'value': f'$({property})'
                 }
@@ -94,11 +94,11 @@ def bootstrap_kuzu(kuzu_object, output_path=None):
                         'query': tm_query,
                         'referenceFormulation': 'cypher'
                     },
-                    'subject': f'ex:{quote(node)}/$(x_{node}_id)',
+                    'subject': f'ns:{quote(node)}/$(x_{node}_id)',
                     'predicateobjects': [{
-                        'predicates': f'ex:{rel[0]}',
+                        'predicates': f'ns:{rel[0]}',
                         'objects': {
-                            'value': f'ex:{quote(rel[1])}/$(y_{rel[1]}_id)',
+                            'value': f'ns:{quote(rel[1])}/$(y_{rel[1]}_id)',
                             'type': 'iri'
                         }
                     }]
@@ -119,7 +119,7 @@ def bootstrap_kuzu(kuzu_object, output_path=None):
 
                     for property in node_relations_properties:
                         pom = {
-                            'predicates': f'ex:{quote(property)}',
+                            'predicates': f'ns:{quote(property)}',
                             'objects': {
                                 'value': f'$({property})'
                             }

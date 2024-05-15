@@ -33,29 +33,29 @@ conn.execute('COPY LivesIn FROM "lives_in.csv";')
 pg2rml_star.bootstrap_mappings(db)
 ```
 
-### Bootstrapped RML-star mappings 
+### Bootstrapped RML-star mappings
 
 ```yaml
 prefixes:
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   xsd: http://www.w3.org/2001/XMLSchema#
-  ex: http://example.com/ns#
+  ns: http://example.com/ns#
 mappings:
   User:
     sources:
       query: MATCH (x:User) RETURN DISTINCT OFFSET(ID(x)) AS x_User_id, x.name AS
         name, x.age AS age
       referenceFormulation: cypher
-    subject: ex:User/$(x_User_id)
+    subject: ns:User/$(x_User_id)
     predicateobjects:
     - predicates: rdf:type
       objects:
-        value: ex:User
+        value: ns:User
         type: iri
-    - predicates: ex:name
+    - predicates: ns:name
       objects:
         value: $(name)
-    - predicates: ex:age
+    - predicates: ns:age
       objects:
         value: $(age)
         datatype: xsd:integer
@@ -64,11 +64,11 @@ mappings:
       query: MATCH (x:User)-[r:Follows]->(y:User) RETURN DISTINCT OFFSET(ID(x)) AS
         x_User_id, OFFSET(ID(y)) AS y_User_id, r.since AS since
       referenceFormulation: cypher
-    subject: ex:User/$(x_User_id)
+    subject: ns:User/$(x_User_id)
     predicateobjects:
-    - predicates: ex:Follows
+    - predicates: ns:Follows
       objects:
-        value: ex:User/$(y_User_id)
+        value: ns:User/$(y_User_id)
         type: iri
   User_Follows_User_quoted:
     sources:
@@ -78,7 +78,7 @@ mappings:
     subject:
       quoted: User_Follows_User
     predicateobjects:
-    - predicates: ex:since
+    - predicates: ns:since
       objects:
         value: $(since)
         datatype: xsd:integer
@@ -87,27 +87,27 @@ mappings:
       query: MATCH (x:User)-[r:LivesIn]->(y:City) RETURN DISTINCT OFFSET(ID(x)) AS
         x_User_id, OFFSET(ID(y)) AS y_City_id
       referenceFormulation: cypher
-    subject: ex:User/$(x_User_id)
+    subject: ns:User/$(x_User_id)
     predicateobjects:
-    - predicates: ex:LivesIn
+    - predicates: ns:LivesIn
       objects:
-        value: ex:City/$(y_City_id)
+        value: ns:City/$(y_City_id)
         type: iri
   City:
     sources:
       query: MATCH (x:City) RETURN DISTINCT OFFSET(ID(x)) AS x_City_id, x.name AS
         name, x.population AS population
       referenceFormulation: cypher
-    subject: ex:City/$(x_City_id)
+    subject: ns:City/$(x_City_id)
     predicateobjects:
     - predicates: rdf:type
       objects:
-        value: ex:City
+        value: ns:City
         type: iri
-    - predicates: ex:name
+    - predicates: ns:name
       objects:
         value: $(name)
-    - predicates: ex:population
+    - predicates: ns:population
       objects:
         value: $(population)
         datatype: xsd:integer

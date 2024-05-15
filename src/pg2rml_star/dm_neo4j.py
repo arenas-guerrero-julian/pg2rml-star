@@ -20,7 +20,7 @@ def bootstrap_neo4j(neo4j_url, user, password, database, output_path=None):
         'prefixes': {
             'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
             'xsd': 'http://www.w3.org/2001/XMLSchema#',
-            'ex': 'http://example.com/ns#'
+            'ns': 'http://example.com/ns#'
         },
         'mappings': {}
     }
@@ -52,21 +52,21 @@ def bootstrap_neo4j(neo4j_url, user, password, database, output_path=None):
             'referenceFormulation': 'cypher'
         }
 
-        dm['mappings'][node_label]['subject'] = f'ex:{quote(node_label)}/$(x_{node_label}_id)'
+        dm['mappings'][node_label]['subject'] = f'ns:{quote(node_label)}/$(x_{node_label}_id)'
 
         dm['mappings'][node_label]['predicateobjects'] = []
         for n in node:
             dm['mappings'][node_label]['predicateobjects'].append({
                 'predicates': 'rdf:type',
                 'objects': {
-                    'value': f'ex:{n}',
+                    'value': f'ns:{n}',
                     'type': 'iri'
                 }
             })
 
         for property in node_properties:
             pom = {
-                'predicates': f'ex:{quote(property)}',
+                'predicates': f'ns:{quote(property)}',
                 'objects': {
                     'value': f'$({property})'
                 }
@@ -98,11 +98,11 @@ def bootstrap_neo4j(neo4j_url, user, password, database, output_path=None):
                         'query': tm_query,
                         'referenceFormulation': 'cypher'
                     },
-                    'subject': f"ex:{quote(node_label)}/$(x_{'_'.join(node)}_id)",
+                    'subject': f"ns:{quote(node_label)}/$(x_{'_'.join(node)}_id)",
                     'predicateobjects': [{
-                        'predicates': f'ex:{rel}',
+                        'predicates': f'ns:{rel}',
                         'objects': {
-                            'value': f"ex:{quote('_'.join(rel_node))}/$(y_{'_'.join(rel_node)}_id)",
+                            'value': f"ns:{quote('_'.join(rel_node))}/$(y_{'_'.join(rel_node)}_id)",
                             'type': 'iri'
                         }
                     }]
@@ -123,7 +123,7 @@ def bootstrap_neo4j(neo4j_url, user, password, database, output_path=None):
 
                     for property in node_relations_properties:
                         pom = {
-                            'predicates': f'ex:{quote(property)}',
+                            'predicates': f'ns:{quote(property)}',
                             'objects': {
                                 'value': f'$({property})'
                             }
