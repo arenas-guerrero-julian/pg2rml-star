@@ -1,0 +1,562 @@
+prefixes:
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  ex: http://example.com/ns#
+mappings:
+  Comment:
+    sources:
+      query: MATCH (x:Comment) RETURN DISTINCT OFFSET(ID(x)) AS x_Comment_id, x.id
+        AS id, x.creationDate AS creationDate, x.locationIP AS locationIP, x.browserUsed
+        AS browserUsed, x.content AS content, x.length AS length
+      referenceFormulation: cypher
+    subject: ex:Comment/$(x_Comment_id)
+    predicateobjects:
+    - predicates: rdf:type
+      objects:
+        value: ex:Comment
+        type: iri
+    - predicates: ex:id
+      objects:
+        value: $(id)
+        datatype: xsd:integer
+    - predicates: ex:creationDate
+      objects:
+        value: $(creationDate)
+        datatype: xsd:integer
+    - predicates: ex:locationIP
+      objects:
+        value: $(locationIP)
+    - predicates: ex:browserUsed
+      objects:
+        value: $(browserUsed)
+    - predicates: ex:content
+      objects:
+        value: $(content)
+    - predicates: ex:length
+      objects:
+        value: $(length)
+        datatype: xsd:integer
+  Comment_comment_hasCreator_person_Person:
+    sources:
+      query: MATCH (x:Comment)-[r:comment_hasCreator_person]->(y:Person) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Comment_id, OFFSET(ID(y)) AS y_Person_id
+      referenceFormulation: cypher
+    subject: ex:Comment/$(x_Comment_id)
+    predicateobjects:
+    - predicates: ex:comment_hasCreator_person
+      objects:
+        value: ex:Person/$(y_Person_id)
+        type: iri
+  Comment_comment_hasTag_tag_Tag:
+    sources:
+      query: MATCH (x:Comment)-[r:comment_hasTag_tag]->(y:Tag) RETURN DISTINCT OFFSET(ID(x))
+        AS x_Comment_id, OFFSET(ID(y)) AS y_Tag_id
+      referenceFormulation: cypher
+    subject: ex:Comment/$(x_Comment_id)
+    predicateobjects:
+    - predicates: ex:comment_hasTag_tag
+      objects:
+        value: ex:Tag/$(y_Tag_id)
+        type: iri
+  Comment_comment_isLocatedIn_place_Place:
+    sources:
+      query: MATCH (x:Comment)-[r:comment_isLocatedIn_place]->(y:Place) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Comment_id, OFFSET(ID(y)) AS y_Place_id
+      referenceFormulation: cypher
+    subject: ex:Comment/$(x_Comment_id)
+    predicateobjects:
+    - predicates: ex:comment_isLocatedIn_place
+      objects:
+        value: ex:Place/$(y_Place_id)
+        type: iri
+  Comment_comment_replyOf_comment_Comment:
+    sources:
+      query: MATCH (x:Comment)-[r:comment_replyOf_comment]->(y:Comment) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Comment_id, OFFSET(ID(y)) AS y_Comment_id
+      referenceFormulation: cypher
+    subject: ex:Comment/$(x_Comment_id)
+    predicateobjects:
+    - predicates: ex:comment_replyOf_comment
+      objects:
+        value: ex:Comment/$(y_Comment_id)
+        type: iri
+  Comment_comment_replyOf_post_Post:
+    sources:
+      query: MATCH (x:Comment)-[r:comment_replyOf_post]->(y:Post) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Comment_id, OFFSET(ID(y)) AS y_Post_id
+      referenceFormulation: cypher
+    subject: ex:Comment/$(x_Comment_id)
+    predicateobjects:
+    - predicates: ex:comment_replyOf_post
+      objects:
+        value: ex:Post/$(y_Post_id)
+        type: iri
+  Forum:
+    sources:
+      query: MATCH (x:Forum) RETURN DISTINCT OFFSET(ID(x)) AS x_Forum_id, x.id AS
+        id, x.title AS title, x.creationDate AS creationDate
+      referenceFormulation: cypher
+    subject: ex:Forum/$(x_Forum_id)
+    predicateobjects:
+    - predicates: rdf:type
+      objects:
+        value: ex:Forum
+        type: iri
+    - predicates: ex:id
+      objects:
+        value: $(id)
+        datatype: xsd:integer
+    - predicates: ex:title
+      objects:
+        value: $(title)
+    - predicates: ex:creationDate
+      objects:
+        value: $(creationDate)
+        datatype: xsd:integer
+  Forum_forum_containerOf_post_Post:
+    sources:
+      query: MATCH (x:Forum)-[r:forum_containerOf_post]->(y:Post) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Forum_id, OFFSET(ID(y)) AS y_Post_id
+      referenceFormulation: cypher
+    subject: ex:Forum/$(x_Forum_id)
+    predicateobjects:
+    - predicates: ex:forum_containerOf_post
+      objects:
+        value: ex:Post/$(y_Post_id)
+        type: iri
+  Forum_forum_hasTag_tag_Tag:
+    sources:
+      query: MATCH (x:Forum)-[r:forum_hasTag_tag]->(y:Tag) RETURN DISTINCT OFFSET(ID(x))
+        AS x_Forum_id, OFFSET(ID(y)) AS y_Tag_id
+      referenceFormulation: cypher
+    subject: ex:Forum/$(x_Forum_id)
+    predicateobjects:
+    - predicates: ex:forum_hasTag_tag
+      objects:
+        value: ex:Tag/$(y_Tag_id)
+        type: iri
+  Forum_forum_hasMember_person_Person:
+    sources:
+      query: MATCH (x:Forum)-[r:forum_hasMember_person]->(y:Person) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Forum_id, OFFSET(ID(y)) AS y_Person_id, r.joinDate AS joinDate
+      referenceFormulation: cypher
+    subject: ex:Forum/$(x_Forum_id)
+    predicateobjects:
+    - predicates: ex:forum_hasMember_person
+      objects:
+        value: ex:Person/$(y_Person_id)
+        type: iri
+  Forum_forum_hasMember_person_Person_quoted:
+    sources:
+      query: MATCH (x:Forum)-[r:forum_hasMember_person]->(y:Person) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Forum_id, OFFSET(ID(y)) AS y_Person_id, r.joinDate AS joinDate
+      referenceFormulation: cypher
+    subject:
+      quoted: Forum_forum_hasMember_person_Person
+    predicateobjects:
+    - predicates: ex:joinDate
+      objects:
+        value: $(joinDate)
+        datatype: xsd:integer
+  Forum_forum_hasModerator_person_Person:
+    sources:
+      query: MATCH (x:Forum)-[r:forum_hasModerator_person]->(y:Person) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Forum_id, OFFSET(ID(y)) AS y_Person_id
+      referenceFormulation: cypher
+    subject: ex:Forum/$(x_Forum_id)
+    predicateobjects:
+    - predicates: ex:forum_hasModerator_person
+      objects:
+        value: ex:Person/$(y_Person_id)
+        type: iri
+  Organisation:
+    sources:
+      query: MATCH (x:Organisation) RETURN DISTINCT OFFSET(ID(x)) AS x_Organisation_id,
+        x.id AS id, x.label AS label, x.name AS name, x.url AS url
+      referenceFormulation: cypher
+    subject: ex:Organisation/$(x_Organisation_id)
+    predicateobjects:
+    - predicates: rdf:type
+      objects:
+        value: ex:Organisation
+        type: iri
+    - predicates: ex:id
+      objects:
+        value: $(id)
+        datatype: xsd:integer
+    - predicates: ex:label
+      objects:
+        value: $(label)
+    - predicates: ex:name
+      objects:
+        value: $(name)
+    - predicates: ex:url
+      objects:
+        value: $(url)
+  Organisation_organisation_isLocatedIn_place_Place:
+    sources:
+      query: MATCH (x:Organisation)-[r:organisation_isLocatedIn_place]->(y:Place)
+        RETURN DISTINCT OFFSET(ID(x)) AS x_Organisation_id, OFFSET(ID(y)) AS y_Place_id
+      referenceFormulation: cypher
+    subject: ex:Organisation/$(x_Organisation_id)
+    predicateobjects:
+    - predicates: ex:organisation_isLocatedIn_place
+      objects:
+        value: ex:Place/$(y_Place_id)
+        type: iri
+  Post:
+    sources:
+      query: MATCH (x:Post) RETURN DISTINCT OFFSET(ID(x)) AS x_Post_id, x.id AS id,
+        x.imageFile AS imageFile, x.creationDate AS creationDate, x.locationIP AS
+        locationIP, x.browserUsed AS browserUsed, x.language AS language, x.content
+        AS content, x.length AS length
+      referenceFormulation: cypher
+    subject: ex:Post/$(x_Post_id)
+    predicateobjects:
+    - predicates: rdf:type
+      objects:
+        value: ex:Post
+        type: iri
+    - predicates: ex:id
+      objects:
+        value: $(id)
+        datatype: xsd:integer
+    - predicates: ex:imageFile
+      objects:
+        value: $(imageFile)
+    - predicates: ex:creationDate
+      objects:
+        value: $(creationDate)
+        datatype: xsd:integer
+    - predicates: ex:locationIP
+      objects:
+        value: $(locationIP)
+    - predicates: ex:browserUsed
+      objects:
+        value: $(browserUsed)
+    - predicates: ex:language
+      objects:
+        value: $(language)
+    - predicates: ex:content
+      objects:
+        value: $(content)
+    - predicates: ex:length
+      objects:
+        value: $(length)
+        datatype: xsd:integer
+  Post_post_hasCreator_person_Person:
+    sources:
+      query: MATCH (x:Post)-[r:post_hasCreator_person]->(y:Person) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Post_id, OFFSET(ID(y)) AS y_Person_id
+      referenceFormulation: cypher
+    subject: ex:Post/$(x_Post_id)
+    predicateobjects:
+    - predicates: ex:post_hasCreator_person
+      objects:
+        value: ex:Person/$(y_Person_id)
+        type: iri
+  Post_post_isLocatedIn_place_Place:
+    sources:
+      query: MATCH (x:Post)-[r:post_isLocatedIn_place]->(y:Place) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Post_id, OFFSET(ID(y)) AS y_Place_id
+      referenceFormulation: cypher
+    subject: ex:Post/$(x_Post_id)
+    predicateobjects:
+    - predicates: ex:post_isLocatedIn_place
+      objects:
+        value: ex:Place/$(y_Place_id)
+        type: iri
+  Post_post_hasTag_tag_Tag:
+    sources:
+      query: MATCH (x:Post)-[r:post_hasTag_tag]->(y:Tag) RETURN DISTINCT OFFSET(ID(x))
+        AS x_Post_id, OFFSET(ID(y)) AS y_Tag_id
+      referenceFormulation: cypher
+    subject: ex:Post/$(x_Post_id)
+    predicateobjects:
+    - predicates: ex:post_hasTag_tag
+      objects:
+        value: ex:Tag/$(y_Tag_id)
+        type: iri
+  Tag:
+    sources:
+      query: MATCH (x:Tag) RETURN DISTINCT OFFSET(ID(x)) AS x_Tag_id, x.id AS id,
+        x.name AS name, x.url AS url
+      referenceFormulation: cypher
+    subject: ex:Tag/$(x_Tag_id)
+    predicateobjects:
+    - predicates: rdf:type
+      objects:
+        value: ex:Tag
+        type: iri
+    - predicates: ex:id
+      objects:
+        value: $(id)
+        datatype: xsd:integer
+    - predicates: ex:name
+      objects:
+        value: $(name)
+    - predicates: ex:url
+      objects:
+        value: $(url)
+  Tag_tag_hasType_tagclass_TagClass:
+    sources:
+      query: MATCH (x:Tag)-[r:tag_hasType_tagclass]->(y:TagClass) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Tag_id, OFFSET(ID(y)) AS y_TagClass_id
+      referenceFormulation: cypher
+    subject: ex:Tag/$(x_Tag_id)
+    predicateobjects:
+    - predicates: ex:tag_hasType_tagclass
+      objects:
+        value: ex:TagClass/$(y_TagClass_id)
+        type: iri
+  TagClass:
+    sources:
+      query: MATCH (x:TagClass) RETURN DISTINCT OFFSET(ID(x)) AS x_TagClass_id, x.id
+        AS id, x.name AS name, x.url AS url
+      referenceFormulation: cypher
+    subject: ex:TagClass/$(x_TagClass_id)
+    predicateobjects:
+    - predicates: rdf:type
+      objects:
+        value: ex:TagClass
+        type: iri
+    - predicates: ex:id
+      objects:
+        value: $(id)
+        datatype: xsd:integer
+    - predicates: ex:name
+      objects:
+        value: $(name)
+    - predicates: ex:url
+      objects:
+        value: $(url)
+  TagClass_tagclass_isSubclassOf_tagclass_TagClass:
+    sources:
+      query: MATCH (x:TagClass)-[r:tagclass_isSubclassOf_tagclass]->(y:TagClass) RETURN
+        DISTINCT OFFSET(ID(x)) AS x_TagClass_id, OFFSET(ID(y)) AS y_TagClass_id
+      referenceFormulation: cypher
+    subject: ex:TagClass/$(x_TagClass_id)
+    predicateobjects:
+    - predicates: ex:tagclass_isSubclassOf_tagclass
+      objects:
+        value: ex:TagClass/$(y_TagClass_id)
+        type: iri
+  Place:
+    sources:
+      query: MATCH (x:Place) RETURN DISTINCT OFFSET(ID(x)) AS x_Place_id, x.id AS
+        id, x.name AS name, x.url AS url, x.label AS label
+      referenceFormulation: cypher
+    subject: ex:Place/$(x_Place_id)
+    predicateobjects:
+    - predicates: rdf:type
+      objects:
+        value: ex:Place
+        type: iri
+    - predicates: ex:id
+      objects:
+        value: $(id)
+        datatype: xsd:integer
+    - predicates: ex:name
+      objects:
+        value: $(name)
+    - predicates: ex:url
+      objects:
+        value: $(url)
+    - predicates: ex:label
+      objects:
+        value: $(label)
+  Place_place_isPartOf_place_Place:
+    sources:
+      query: MATCH (x:Place)-[r:place_isPartOf_place]->(y:Place) RETURN DISTINCT OFFSET(ID(x))
+        AS x_Place_id, OFFSET(ID(y)) AS y_Place_id
+      referenceFormulation: cypher
+    subject: ex:Place/$(x_Place_id)
+    predicateobjects:
+    - predicates: ex:place_isPartOf_place
+      objects:
+        value: ex:Place/$(y_Place_id)
+        type: iri
+  Person:
+    sources:
+      query: MATCH (x:Person) RETURN DISTINCT OFFSET(ID(x)) AS x_Person_id, x.id AS
+        id, x.firstName AS firstName, x.lastName AS lastName, x.gender AS gender,
+        x.birthday AS birthday, x.creationDate AS creationDate, x.locationIP AS locationIP,
+        x.browserUsed AS browserUsed
+      referenceFormulation: cypher
+    subject: ex:Person/$(x_Person_id)
+    predicateobjects:
+    - predicates: rdf:type
+      objects:
+        value: ex:Person
+        type: iri
+    - predicates: ex:id
+      objects:
+        value: $(id)
+        datatype: xsd:integer
+    - predicates: ex:firstName
+      objects:
+        value: $(firstName)
+    - predicates: ex:lastName
+      objects:
+        value: $(lastName)
+    - predicates: ex:gender
+      objects:
+        value: $(gender)
+    - predicates: ex:birthday
+      objects:
+        value: $(birthday)
+    - predicates: ex:creationDate
+      objects:
+        value: $(creationDate)
+        datatype: xsd:integer
+    - predicates: ex:locationIP
+      objects:
+        value: $(locationIP)
+    - predicates: ex:browserUsed
+      objects:
+        value: $(browserUsed)
+  Person_person_hasInterest_tag_Tag:
+    sources:
+      query: MATCH (x:Person)-[r:person_hasInterest_tag]->(y:Tag) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Tag_id
+      referenceFormulation: cypher
+    subject: ex:Person/$(x_Person_id)
+    predicateobjects:
+    - predicates: ex:person_hasInterest_tag
+      objects:
+        value: ex:Tag/$(y_Tag_id)
+        type: iri
+  Person_person_isLocatedIn_place_Place:
+    sources:
+      query: MATCH (x:Person)-[r:person_isLocatedIn_place]->(y:Place) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Place_id
+      referenceFormulation: cypher
+    subject: ex:Person/$(x_Person_id)
+    predicateobjects:
+    - predicates: ex:person_isLocatedIn_place
+      objects:
+        value: ex:Place/$(y_Place_id)
+        type: iri
+  Person_person_knows_person_Person:
+    sources:
+      query: MATCH (x:Person)-[r:person_knows_person]->(y:Person) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Person_id, r.creationDate
+        AS creationDate
+      referenceFormulation: cypher
+    subject: ex:Person/$(x_Person_id)
+    predicateobjects:
+    - predicates: ex:person_knows_person
+      objects:
+        value: ex:Person/$(y_Person_id)
+        type: iri
+  Person_person_knows_person_Person_quoted:
+    sources:
+      query: MATCH (x:Person)-[r:person_knows_person]->(y:Person) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Person_id, r.creationDate
+        AS creationDate
+      referenceFormulation: cypher
+    subject:
+      quoted: Person_person_knows_person_Person
+    predicateobjects:
+    - predicates: ex:creationDate
+      objects:
+        value: $(creationDate)
+        datatype: xsd:integer
+  Person_person_likes_comment_Comment:
+    sources:
+      query: MATCH (x:Person)-[r:person_likes_comment]->(y:Comment) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Comment_id, r.creationDate
+        AS creationDate
+      referenceFormulation: cypher
+    subject: ex:Person/$(x_Person_id)
+    predicateobjects:
+    - predicates: ex:person_likes_comment
+      objects:
+        value: ex:Comment/$(y_Comment_id)
+        type: iri
+  Person_person_likes_comment_Comment_quoted:
+    sources:
+      query: MATCH (x:Person)-[r:person_likes_comment]->(y:Comment) RETURN DISTINCT
+        OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Comment_id, r.creationDate
+        AS creationDate
+      referenceFormulation: cypher
+    subject:
+      quoted: Person_person_likes_comment_Comment
+    predicateobjects:
+    - predicates: ex:creationDate
+      objects:
+        value: $(creationDate)
+        datatype: xsd:integer
+  Person_person_studyAt_organisation_Organisation:
+    sources:
+      query: MATCH (x:Person)-[r:person_studyAt_organisation]->(y:Organisation) RETURN
+        DISTINCT OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Organisation_id,
+        r.classYear AS classYear
+      referenceFormulation: cypher
+    subject: ex:Person/$(x_Person_id)
+    predicateobjects:
+    - predicates: ex:person_studyAt_organisation
+      objects:
+        value: ex:Organisation/$(y_Organisation_id)
+        type: iri
+  Person_person_studyAt_organisation_Organisation_quoted:
+    sources:
+      query: MATCH (x:Person)-[r:person_studyAt_organisation]->(y:Organisation) RETURN
+        DISTINCT OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Organisation_id,
+        r.classYear AS classYear
+      referenceFormulation: cypher
+    subject:
+      quoted: Person_person_studyAt_organisation_Organisation
+    predicateobjects:
+    - predicates: ex:classYear
+      objects:
+        value: $(classYear)
+        datatype: xsd:integer
+  Person_person_workAt_organisation_Organisation:
+    sources:
+      query: MATCH (x:Person)-[r:person_workAt_organisation]->(y:Organisation) RETURN
+        DISTINCT OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Organisation_id,
+        r.workFrom AS workFrom
+      referenceFormulation: cypher
+    subject: ex:Person/$(x_Person_id)
+    predicateobjects:
+    - predicates: ex:person_workAt_organisation
+      objects:
+        value: ex:Organisation/$(y_Organisation_id)
+        type: iri
+  Person_person_workAt_organisation_Organisation_quoted:
+    sources:
+      query: MATCH (x:Person)-[r:person_workAt_organisation]->(y:Organisation) RETURN
+        DISTINCT OFFSET(ID(x)) AS x_Person_id, OFFSET(ID(y)) AS y_Organisation_id,
+        r.workFrom AS workFrom
+      referenceFormulation: cypher
+    subject:
+      quoted: Person_person_workAt_organisation_Organisation
+    predicateobjects:
+    - predicates: ex:workFrom
+      objects:
+        value: $(workFrom)
+        datatype: xsd:integer
+  Person_person_likes_post_Post:
+    sources:
+      query: MATCH (x:Person)-[r:person_likes_post]->(y:Post) RETURN DISTINCT OFFSET(ID(x))
+        AS x_Person_id, OFFSET(ID(y)) AS y_Post_id, r.creationDate AS creationDate
+      referenceFormulation: cypher
+    subject: ex:Person/$(x_Person_id)
+    predicateobjects:
+    - predicates: ex:person_likes_post
+      objects:
+        value: ex:Post/$(y_Post_id)
+        type: iri
+  Person_person_likes_post_Post_quoted:
+    sources:
+      query: MATCH (x:Person)-[r:person_likes_post]->(y:Post) RETURN DISTINCT OFFSET(ID(x))
+        AS x_Person_id, OFFSET(ID(y)) AS y_Post_id, r.creationDate AS creationDate
+      referenceFormulation: cypher
+    subject:
+      quoted: Person_person_likes_post_Post
+    predicateobjects:
+    - predicates: ex:creationDate
+      objects:
+        value: $(creationDate)
+        datatype: xsd:integer
