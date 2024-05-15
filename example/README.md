@@ -1,3 +1,9 @@
+# Example with Kùzu
+
+### Running the example
+
+Run the following Python script to (i) create a [Kùzu](https://github.com/kuzudb/kuzu) database, (ii) load the data from the CSV files in this directory of the repository, and (iii) bootstrap the [RML-star](https://w3id.org/rml/star/spec) mappings.
+
 ```python
 import kuzu
 import pg2rml_star
@@ -24,6 +30,8 @@ conn.execute('COPY LivesIn FROM "lives_in.csv";')
 
 pg2rml_star.bootstrap_mappings(db)
 ```
+
+### Bootstrapped RML-star mappings 
 
 ```yaml
 prefixes:
