@@ -2,7 +2,7 @@
 
 ### Running the example
 
-First, install `pg2rml-star`:
+First, install PG2RML-star:
 
 ```bash
 pip install git+https://github.com/arenas-guerrero-julian/pg2rml-star.git
