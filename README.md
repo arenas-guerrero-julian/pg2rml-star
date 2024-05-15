@@ -1,17 +1,16 @@
 # PG2RML-star
 
-**PG2RML-star** is an implementation of the direct mapping from property graphs to [RDF-star](https://w3c.github.io/rdf-star/cg-spec/2021-12-17.html). It bootstraps [RML](https://kg-construct.github.io/rml-resources/portal/) mappings from property graph databases that can then be customized by users. These mappings can be provided to RML systems such as [Morph-KGC](https://github.com/morph-kgc/morph-kgc/) to generate the RDF-star knowledge graph. To facilitate mapping customization by users, PG2RML-star creates the mappings in [YARRRML](https://rml.io/yarrrml/spec/) syntax, a user-friendly serialization of RML. PG2RML-star currently supports the following GDBMSs:
+**PG2RML-star** bootstraps [RML-star](https://kg-construct.github.io/rml-resources/portal/) mappings from property graph databases that can then be customized by users with domain vocabularies. The mappings can then be used with an RML system such as [Morph-KGC](https://github.com/morph-kgc/morph-kgc/) to generate the RDF-star knowledge graph. To facilitate mapping customization by users, PG2RML-star creates the mappings in [YARRRML](https://rml.io/yarrrml/spec/) syntax, a user-friendly serialization of RML. PG2RML-star currently supports the following property graph databases:
 - [Neo4j](https://neo4j.com/)
 - [Kùzu](https://github.com/kuzudb/kuzu)
 
 ## Getting Started :rocket:
 
-**[PyPi](https://pypi.org/project/pg2rml_star/)** is the fastest way to install PG2RML-star:
-```bash
-pip install pg2rml_star
-```
+### Install
 
-We recommend to use **[virtual environments](https://docs.python.org/3/library/venv.html#)**.
+```bash
+pip install git+https://github.com/arenas-guerrero-julian/pg2rml-star.git
+```
 
 ### Command line
 
@@ -65,7 +64,7 @@ pg2rml_star.bootstrap_mappings(db)
 
 ## License :unlock:
 
-`pg2rml_star` is available under the **[Apache License 2.0](https://github.com/morph-kgc/morph-kgc/blob/main/LICENSE)**.
+PG2RML-star is available under the **[Apache License 2.0](https://github.com/morph-kgc/morph-kgc/blob/main/LICENSE)**.
 
 ## Author & Contact :mailbox_with_mail:
 
