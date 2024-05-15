@@ -1,0 +1,44 @@
+[build-system]
+requires = ['hatchling>=1.11.0']
+build-backend = 'hatchling.build'
+
+[project.urls]
+Documentation = 'https://github.com/arenas-guerrero-julian/pg2rml_star/blob/main/README.md'
+Source = 'https://github.com/arenas-guerrero-julian/pg2rml_star'
+Tracker = 'https://github.com/arenas-guerrero-julian/pg2rml_star/issues'
+Homepage = 'https://github.com/arenas-guerrero-julian/pg2rml_star'
+History = 'https://github.com/arenas-guerrero-julian/pg2rml_star/releases'
+
+[project]
+name = 'pg2rml_star'
+description = 'A bootstrapper of RML-star mappings from property graphs.'
+readme = 'README.md'
+keywords = ['RDF', 'RML', 'RML-star', 'Knowledge Graph', 'Property Graph']
+authors = [
+  {name = 'Julián Arenas-Guerrero', email = 'julian.arenas.guerrero@upm.es'}
+]
+license = 'Apache-2.0'
+classifiers = [
+  'Programming Language :: Python :: 3',
+  'License :: OSI Approved :: Apache Software License',
+  'Operating System :: OS Independent',
+  'Development Status :: 5 - Production/Stable',
+  'Environment :: Console',
+  'Intended Audience :: Information Technology',
+  'Intended Audience :: Science/Research',
+  'Topic :: Software Development :: Pre-processors',
+  'Topic :: Database',
+  'Topic :: Utilities',
+  'Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator',
+]
+requires-python = '>=3.8'
+dynamic = ['version']
+dependencies = [
+  'pandas>=2.0.0, <3.0.0',
+  'ruamel.yaml==0.18.0, <0.19.0',
+  'kuzu>=0.0.12, <1.0.0',
+  'neo4j>=5.0.0, <6.0.0'
+]
+
+[tool.hatch.version]
+path = 'src/pg2rml_star/_version.py'
