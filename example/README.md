@@ -14,10 +14,6 @@ Then, run the following Python script to (i) create a [Kùzu](https://github.com
 import kuzu
 import pg2rml_star
 
-# create a database directory
-import shutil
-shutil.rmtree('demo.db', ignore_errors=True)
-
 # create database and connection
 db = kuzu.Database('demo.db')
 conn = kuzu.Connection(db)
