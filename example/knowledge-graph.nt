@@ -1,0 +1,33 @@
+<http://example.com/ns#User/1> <http://example.com/ns#Follows> <http://example.com/ns#User/2> .
+<http://example.com/ns#User/2> <http://example.com/ns#Follows> <http://example.com/ns#User/3> .
+<http://example.com/ns#User/0> <http://example.com/ns#Follows> <http://example.com/ns#User/2> .
+<http://example.com/ns#User/0> <http://example.com/ns#Follows> <http://example.com/ns#User/1> .
+<http://example.com/ns#User/1> <http://example.com/ns#LivesIn> <http://example.com/ns#City/0> .
+<http://example.com/ns#User/2> <http://example.com/ns#LivesIn> <http://example.com/ns#City/1> .
+<http://example.com/ns#User/0> <http://example.com/ns#LivesIn> <http://example.com/ns#City/0> .
+<http://example.com/ns#User/3> <http://example.com/ns#LivesIn> <http://example.com/ns#City/2> .
+<http://example.com/ns#User/1> <http://example.com/ns#age> "40"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.com/ns#User/3> <http://example.com/ns#age> "25"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.com/ns#User/2> <http://example.com/ns#age> "50"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.com/ns#User/0> <http://example.com/ns#age> "30"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.com/ns#User/2> <http://example.com/ns#name> "Zhang" .
+<http://example.com/ns#User/1> <http://example.com/ns#name> "Karissa" .
+<http://example.com/ns#City/2> <http://example.com/ns#name> "Guelph" .
+<http://example.com/ns#City/0> <http://example.com/ns#name> "Waterloo" .
+<http://example.com/ns#City/1> <http://example.com/ns#name> "Kitchener" .
+<http://example.com/ns#User/0> <http://example.com/ns#name> "Adam" .
+<http://example.com/ns#User/3> <http://example.com/ns#name> "Noura" .
+<http://example.com/ns#City/0> <http://example.com/ns#population> "150000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.com/ns#City/1> <http://example.com/ns#population> "200000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.com/ns#City/2> <http://example.com/ns#population> "75000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<< <http://example.com/ns#User/1> <http://example.com/ns#Follows> <http://example.com/ns#User/2> >> <http://example.com/ns#since> "2021"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<< <http://example.com/ns#User/2> <http://example.com/ns#Follows> <http://example.com/ns#User/3> >> <http://example.com/ns#since> "2022"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<< <http://example.com/ns#User/0> <http://example.com/ns#Follows> <http://example.com/ns#User/2> >> <http://example.com/ns#since> "2020"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<< <http://example.com/ns#User/0> <http://example.com/ns#Follows> <http://example.com/ns#User/1> >> <http://example.com/ns#since> "2020"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.com/ns#City/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.com/ns#City> .
+<http://example.com/ns#City/0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.com/ns#City> .
+<http://example.com/ns#City/2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.com/ns#City> .
+<http://example.com/ns#User/0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.com/ns#User> .
+<http://example.com/ns#User/2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.com/ns#User> .
+<http://example.com/ns#User/3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.com/ns#User> .
+<http://example.com/ns#User/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.com/ns#User> .
