@@ -62,8 +62,19 @@ db = kuzu.Database('./test')
 pg2rml_star.bootstrap_mappings(db)
 ```
 
-## Author & Contact :mailbox_with_mail:
+## Citing 💬
 
-- **[Julián Arenas-Guerrero](https://github.com/arenas-guerrero-julian/) - [julian.arenas.guerrero@upm.es](mailto:julian.arenas.guerrero@upm.es)**
+Cite the **[iiWAS paper](https://oa.upm.es/83168/1/2024_iiWAS_PG_to_RML_star.pdf)**:
 
-*[Universidad Politécnica de Madrid](https://www.upm.es/internacional)*.
+```bib
+@inproceedings{arenas2024automatic,
+  title = {{Automatic Extraction of RML-star Mappings from Property Graphs}},
+  author = {Arenas-Guerrero, Julián and Espinoza-Arias, Paola},
+  booktitle = {Proceedings of the 26th International Conference on Information Integration and Web Intelligence},
+  publisher = {Springer Nature Switzerland},
+  pages = {298-303},
+  year = {2024},
+  isbn = {978-3-031-78090-5},
+  doi = {10.1007/978-3-031-78090-5_25},
+}
+```
