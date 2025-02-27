@@ -10,13 +10,15 @@ preferred-citation:
   authors:
     - family-names: Arenas-Guerrero
       given-names: Julián
+      orcid: http://orcid.org/0000-0002-3029-6469
   year: 2024
   collection-title: "Proceedings of the 26th International Conference on Information Integration and Web Intelligence"
   #start: 
   #end: 
-  #doi: 
+  doi: 10.1007/978-3-031-78090-5_25
   title: "Automatic Extraction of RML-star Mappings from Property Graphs"
   conference:
     - name: "Proceedings of the 26th International Conference on Information Integration and Web Intelligence"
       city: Bratislava
       country: Slovakia
+  publisher: Springer Nature Switzerland
