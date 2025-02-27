@@ -62,10 +62,6 @@ db = kuzu.Database('./test')
 pg2rml_star.bootstrap_mappings(db)
 ```
 
-## License :unlock:
-
-PG2RML-star is available under the **[Apache License 2.0](https://github.com/morph-kgc/morph-kgc/blob/main/LICENSE)**.
-
 ## Author & Contact :mailbox_with_mail:
 
 - **[Julián Arenas-Guerrero](https://github.com/arenas-guerrero-julian/) - [julian.arenas.guerrero@upm.es](mailto:julian.arenas.guerrero@upm.es)**
