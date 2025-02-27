@@ -1,0 +1,22 @@
+title: "Automatic Extraction of RML-star Mappings from Property Graphs"
+license: Apache-2.0
+authors:
+  - family-names: Arenas-Guerrero
+    given-names: Julián
+    orcid: "http://orcid.org/0000-0002-3029-6469"
+cff-version: 1.2.0
+preferred-citation:
+  type: conference-paper
+  authors:
+    - family-names: Arenas-Guerrero
+      given-names: Julián
+  year: 2024
+  collection-title: "Proceedings of the 26th International Conference on Information Integration and Web Intelligence"
+  #start: 
+  #end: 
+  #doi: 
+  title: "Automatic Extraction of RML-star Mappings from Property Graphs"
+  conference:
+    - name: "Proceedings of the 26th International Conference on Information Integration and Web Intelligence"
+      city: Bratislava
+      country: Slovakia
